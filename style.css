@@ -1,0 +1,68 @@
+.container{
+    width: 90%;
+    margin: auto;
+}
+.page-title{
+    color: blueviolet;
+    text-align: center;
+}
+.table-top{
+    display: flex;
+    justify-content: space-between;
+}
+.add-btn a{
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: blueviolet;
+    color: #fff;
+    border-radius: 5px;
+}
+table{
+    width: 100%;
+    margin: auto;
+    margin-top: 20px;
+}
+td{
+    text-align: center;
+}
+table, th, td{
+    border: 1px solid blueviolet;
+    border-collapse: collapse;
+}
+.edit-btn a{
+    text-decoration: none;
+    color: green;
+}
+.dlt-btn a{
+    text-decoration: none;
+    color: red;
+}
+
+.form-control{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.form-control label{
+    margin-bottom: 5px;
+}
+.form-control input{
+    padding: 5px 0;
+    border-radius: 5px;
+    border: 1px solid blueviolet;
+}
+.form-control input:focus{
+    border: none;
+}
+.form-control select{
+    padding: 5px 0;
+    border: 1px solid blueviolet;
+    border-radius: 5px;
+}
+.submit-btn{
+    border: none;
+    color: #fff;
+    background-color: blueviolet;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
