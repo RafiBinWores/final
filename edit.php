@@ -1,3 +1,25 @@
+<?php
+
+include 'database.php';
+$id = $_GET['id'];
+
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $gender = $_POST['gender'];
+
+    $sql = "UPDATE info1 SET name='$name', email='$email', gender='$gender' WHERE id='$id'";
+
+    $res = mysqli_query($conn, $sql);
+
+    if ($res) {
+        header('location: index.php?msg=update Successfully');
+    } else {
+        echo 'failed: ' . mysqli_errno($conn);
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,24 +36,29 @@
         <h1>Student Information</h1>
     </div>
     <div class="container">
+        <?php
+        $sql = "SELECT * FROM info1 WHERE id =$id LIMIT 1";
+        $res = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($res);
+        ?>
 
 
         <form action="" method="POST">
             <div class="form-control">
                 <label for="name">Your Name</label>
-                <input type="text" name="name" id="name">
+                <input type="text" name="name" id="name" value="<?php echo $row['name'] ?>">
             </div>
             <div class="form-control">
                 <label for="email">Your email</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" value="<?php echo $row['email'] ?>" id="email">
             </div>
             <div class="form-control">
                 <label for="gender">Your gender</label>
                 <select name="gender" id="gender">
                     <option selected>Cohoose one</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Others">Others</option>
+                    <option value="Male" <?php echo ($row['gender'] == 'Male') ? "selected" : ""; ?>>Male</option>
+                    <option value="Female" <?php echo ($row['gender'] == 'Female') ? "selected" : ""; ?>>Female</option>
+                    <option value="Others" <?php echo ($row['gender'] == 'Others') ? "selected" : ""; ?>>Others</option>
                 </select>
             </div>
             <input type="submit" class="submit-btn" name="submit">
@@ -41,25 +68,3 @@
 </body>
 
 </html>
-
-<?php
-
-include 'database.php';
-
-if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $gender = $_POST['gender'];
-
-    $sql = "INSERT INTO info1 (id, name, email, gender) VALUES (null, '$name', '$email', '$gender')";
-
-    $res = mysqli_query($conn, $sql);
-
-    if ($res) {
-        header('location: index.php?msg=Added Successfully');
-    } else {
-        echo 'failed: ' . mysqli_errno($conn);
-    }
-}
-
-?>
